@@ -35,6 +35,7 @@ class MedicalPatient(models.Model):
     country_id = fields.Many2one('res.country', string='Country')
     
     # Medical Information
+    doctor_id = fields.Many2one('medical.doctor', string='Primary Care Doctor')
     blood_type = fields.Selection([
         ('A+', 'A+'), ('A-', 'A-'),
         ('B+', 'B+'), ('B-', 'B-'),

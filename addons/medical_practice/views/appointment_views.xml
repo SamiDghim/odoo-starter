@@ -104,4 +104,30 @@
             </p>
         </field>
     </record>
+
+    <!-- Appointment Graph View -->
+    <record id="view_medical_appointment_graph" model="ir.ui.view">
+        <field name="name">medical.appointment.graph</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <graph string="Appointment Statistics" type="line">
+                <field name="appointment_date" type="row" interval="month"/>
+                <field name="state" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Appointment Pivot View -->
+    <record id="view_medical_appointment_pivot" model="ir.ui.view">
+        <field name="name">medical.appointment.pivot</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <pivot string="Appointment Analysis">
+                <field name="appointment_date" type="row" interval="month"/>
+                <field name="state" type="col"/>
+                <field name="appointment_type" type="row"/>
+                <field name="duration" type="measure"/>
+            </pivot>
+        </field>
+    </record>
 </odoo>

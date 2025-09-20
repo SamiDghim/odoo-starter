@@ -91,4 +91,29 @@
             </p>
         </field>
     </record>
+
+    <!-- Medical Record Graph View -->
+    <record id="view_medical_record_graph" model="ir.ui.view">
+        <field name="name">medical.record.graph</field>
+        <field name="model">medical.record</field>
+        <field name="arch" type="xml">
+            <graph string="Medical Records Chart" type="line">
+                <field name="create_date" type="row" interval="month"/>
+                <field name="patient_id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Medical Record Pivot View -->
+    <record id="view_medical_record_pivot" model="ir.ui.view">
+        <field name="name">medical.record.pivot</field>
+        <field name="model">medical.record</field>
+        <field name="arch" type="xml">
+            <pivot string="Medical Records Analysis">
+                <field name="create_date" type="row" interval="month"/>
+                <field name="patient_id" type="col"/>
+                <field name="diagnosis" type="row"/>
+            </pivot>
+        </field>
+    </record>
 </odoo>

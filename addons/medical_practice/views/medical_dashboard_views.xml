@@ -1,56 +1,167 @@
 <odoo>
-  <!-- Menu -->
-  <menuitem id="menu_medical_dashboard" name="Dashboard Médical" sequence="1"/>
-
   <!-- Action -->
   <record id="action_medical_dashboard" model="ir.actions.act_window">
     <field name="name">Medical Dashboard</field>
     <field name="res_model">medical.dashboard</field>
     <field name="view_mode">form</field>
     <field name="target">current</field>
+    <field name="context">{'create': False, 'edit': False}</field>
+    <field name="res_id" ref="default_medical_dashboard"/>
+    <field name="domain">[]</field>
   </record>
 
-  <!-- Attacher au menu -->
-  <menuitem id="submenu_medical_dashboard"
-            name="Tableau de bord"
-            parent="menu_medical_dashboard"
-            action="action_medical_dashboard"/>
+  <!-- Chart Actions for Embedding -->
+  <record id="action_appointment_chart" model="ir.actions.act_window">
+    <field name="name">Appointment Trends</field>
+    <field name="res_model">medical.appointment</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_appointment_line_chart"/>
+    <field name="search_view_id" ref="view_appointment_search_chart"/>
+    <field name="target">current</field>
+    <field name="context">{'search_default_last_30_days': 1}</field>
+  </record>
+
+  <record id="action_patient_chart" model="ir.actions.act_window">
+    <field name="name">Patient Registration Trends</field>
+    <field name="res_model">medical.patient</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_patient_line_chart"/>
+    <field name="search_view_id" ref="view_patient_search_chart"/>
+    <field name="target">current</field>
+    <field name="context">{'search_default_last_30_days': 1}</field>
+  </record>
+
+  <!-- Dashboard Menu under Medical Practice -->
+  <menuitem id="menu_medical_dashboard"
+            name="Dashboard"
+            parent="menu_medical_main"
+            action="action_medical_dashboard"
+            sequence="5"/>
+
+  <!-- Chart Views for Appointments - Line Chart -->
+  <record id="view_appointment_line_chart" model="ir.ui.view">
+    <field name="name">medical.appointment.line.chart</field>
+    <field name="model">medical.appointment</field>
+    <field name="arch" type="xml">
+      <graph string="Appointment Trends" type="line">
+        <field name="appointment_date" type="col" interval="day"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Chart Views for Patients - Line Chart -->
+  <record id="view_patient_line_chart" model="ir.ui.view">
+    <field name="name">medical.patient.line.chart</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <graph string="Patient Registration Trends" type="line">
+        <field name="create_date" type="col" interval="day"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Search view for Appointments with date filters -->
+  <record id="view_appointment_search_chart" model="ir.ui.view">
+    <field name="name">medical.appointment.search.chart</field>
+    <field name="model">medical.appointment</field>
+    <field name="arch" type="xml">
+      <search string="Appointment Search">
+        <filter name="last_30_days" string="Last 30 Days"
+                domain="[('appointment_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+        <filter name="last_7_days" string="Last 7 Days"
+                domain="[('appointment_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+        <filter name="this_month" string="This Month"
+                domain="[('appointment_date', '>=', context_today().replace(day=1).strftime('%Y-%m-%d'))]"/>
+      </search>
+    </field>
+  </record>
+
+  <!-- Search view for Patients with date filters -->
+  <record id="view_patient_search_chart" model="ir.ui.view">
+    <field name="name">medical.patient.search.chart</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <search string="Patient Search">
+        <filter name="last_30_days" string="Last 30 Days"
+                domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+        <filter name="last_7_days" string="Last 7 Days"
+                domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+        <filter name="this_month" string="This Month"
+                domain="[('create_date', '>=', context_today().replace(day=1).strftime('%Y-%m-%d'))]"/>
+      </search>
+    </field>
+  </record>
 
   <!-- Vue Dashboard -->
   <record id="view_medical_dashboard_form" model="ir.ui.view">
     <field name="name">medical.dashboard.form</field>
     <field name="model">medical.dashboard</field>
     <field name="arch" type="xml">
-      <form string="Medical Dashboard">
+      <form string="Medical Dashboard" create="false" edit="false">
         <sheet>
-          <h1>📊 Tableau de bord médical</h1>
+          <div class="oe_title">
+            <h1>
+              <span class="o_form_label">📊 Medical Practice Dashboard</span>
+            </h1>
+          </div>
 
-          <group>
+          <!-- Smart Buttons Section -->
+          <div class="oe_button_box" name="button_box">
+            
+            <!-- Patient Statistics -->
             <button name="action_open_patients"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-user"
-                    string="Patients">
-              <field name="patient_count" widget="statinfo"/>
+                    icon="fa-users"
+                    style="background-color:#20c997;color:#fff;padding:8px;border-radius:8px;">
+              <field name="patient_count" widget="statinfo" string="Total Patients"/>
             </button>
 
+            <!-- Doctor Statistics -->
+            <button name="action_open_doctors"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-user-md"
+                    style="background-color:#6f42c1;color:#fff;padding:8px;border-radius:8px;">
+              <field name="doctor_count" widget="statinfo" string="Total Doctors"/>
+            </button>
+
+            <!-- Appointment Statistics -->
             <button name="action_open_appointments"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-calendar"
-                    string="Rendez-vous">
-              <field name="appointment_count" widget="statinfo"/>
+                    icon="fa-calendar-o"
+                    style="background-color:#fd7e14;color:#fff;padding:8px;border-radius:8px;">
+              <field name="appointment_count" widget="statinfo" string="Total Appointments"/>
             </button>
-          </group>
 
-          <notebook>
-            <page string="Graphique">
-              <graph string="Rendez-vous par médecin" type="bar">
-                <field name="doctor_id"/>
-                <field name="id" type="measure"/>
-              </graph>
-            </page>
-          </notebook>
+            <!-- Prescription Statistics -->
+            <button name="action_open_prescriptions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pills"
+                    style="background-color:#dc3545;color:#fff;padding:8px;border-radius:8px;">
+              <field name="prescriptions_count" widget="statinfo" string="Total Ordonnances"/>
+            </button>
+          </div>
+
+          <!-- Direct Chart Display Section -->
+          <div class="row mt32">
+            <div class="col-md-12">
+              <h3>📈 Doctors vs Patients Analysis</h3>
+              <div class="card" style="border: 1px solid #dee2e6; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="card-header" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; padding: 15px; border-radius: 8px 8px 0 0;">
+                  <h5 style="margin: 0; color: #495057; font-size: 1.1rem; font-weight: 500;">👨‍⚕️ Doctor-Patient Relationship Chart</h5>
+                </div>
+                <div class="card-body" style="padding: 20px; height: 400px;">
+                  <field name="doctor_patient_chart" 
+                         widget="html" 
+                         readonly="1"
+                         nolabel="1"/>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </sheet>
       </form>

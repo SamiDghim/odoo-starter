@@ -1,0 +1,97 @@
+/* Medical Practice Dashboard Styles */
+
+/* Smart Button - Patients (Green) */
+.smart_button_patients {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3) !important;
+}
+
+.smart_button_patients:hover {
+    background: linear-gradient(135deg, #218838, #1ba085) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4) !important;
+}
+
+/* Smart Button - Doctors (Blue) */
+.smart_button_doctors {
+    background: linear-gradient(135deg, #007bff, #0056b3) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3) !important;
+}
+
+.smart_button_doctors:hover {
+    background: linear-gradient(135deg, #0056b3, #004085) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4) !important;
+}
+
+/* Smart Button - Appointments (Orange-Red) */
+.smart_button_appointments {
+    background: linear-gradient(135deg, #fd7e14, #e63946) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(253, 126, 20, 0.3) !important;
+}
+
+.smart_button_appointments:hover {
+    background: linear-gradient(135deg, #e63946, #d62d20) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(253, 126, 20, 0.4) !important;
+}
+
+/* Smart Button - Prescriptions (Purple) */
+.smart_button_prescriptions {
+    background: linear-gradient(135deg, #6f42c1, #8e44ad) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3) !important;
+}
+
+.smart_button_prescriptions:hover {
+    background: linear-gradient(135deg, #8e44ad, #7b1fa2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(111, 66, 193, 0.4) !important;
+}
+
+/* General Smart Button Styling */
+.oe_stat_button {
+    transition: all 0.3s ease !important;
+    border-radius: 8px !important;
+    margin: 5px !important;
+}
+
+/* Dashboard specific styles */
+.medical_dashboard_title {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.dashboard_chart_card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard_chart_header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+.dashboard_chart_body {
+    padding: 20px;
+    height: 400px;
+}
+
+.dashboard_chart_title {
+    margin: 0;
+    color: #495057;
+    font-size: 1.1rem;
+    font-weight: 500;
+}

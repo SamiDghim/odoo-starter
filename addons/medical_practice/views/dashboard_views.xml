@@ -58,17 +58,4 @@
               parent="menu_medical_prescriptions" 
               action="action_medical_prescription" 
               sequence="10"/>
-
-    <!-- Reports/Dashboard Menu -->
-    <menuitem id="menu_medical_reports" 
-              name="Reports" 
-              parent="menu_medical_main" 
-              sequence="50"/>
-
-
-    <menuitem id="menu_patient_analytics" 
-              name="Patient Analytics" 
-              parent="menu_medical_reports" 
-              action="action_medical_dashboard" 
-              sequence="20"/>
 </odoo>

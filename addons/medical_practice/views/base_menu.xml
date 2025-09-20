@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Medical Menu - load this first so other views can reference it -->
+    <menuitem id="menu_medical_main" 
+              name="Medical Practice" 
+              sequence="10"/>
+
+    <!-- Sub-category menus without actions -->
+    <menuitem id="menu_medical_patients" 
+              name="Patients" 
+              parent="menu_medical_main" 
+              sequence="10"/>
+
+    <menuitem id="menu_medical_appointments" 
+              name="Appointments" 
+              parent="menu_medical_main" 
+              sequence="20"/>
+
+    <menuitem id="menu_medical_records" 
+              name="Medical Records" 
+              parent="menu_medical_main" 
+              sequence="30"/>
+
+    <menuitem id="menu_medical_prescriptions" 
+              name="Prescriptions" 
+              parent="menu_medical_main" 
+              sequence="40"/>
+</odoo>

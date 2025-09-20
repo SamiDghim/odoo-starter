@@ -16,7 +16,7 @@ class MedicalRecord(models.Model):
     )
     
     patient_id = fields.Many2one('medical.patient', string='Patient', required=True, tracking=True)
-    doctor_id = fields.Many2one('res.users', string='Doctor', required=True)
+    doctor_id = fields.Many2one('medical.doctor', string='Doctor', required=True)
     appointment_id = fields.Many2one('medical.appointment', string='Related Appointment')
     record_date = fields.Datetime(string='Record Date', default=fields.Datetime.now, required=True)
     

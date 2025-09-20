@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sample Patients -->
+    <!-- Additional sample doctors -->
+    <record id="doctor_smith" model="medical.doctor">
+        <field name="name">Dr. Anna Smith</field>
+        <field name="speciality">General Medicine</field>
+        <field name="email">anna.smith@example.com</field>
+    </record>
+
+    <record id="doctor_chen" model="medical.doctor">
+        <field name="name">Dr. Li Chen</field>
+        <field name="speciality">Pediatrics</field>
+        <field name="email">li.chen@example.com</field>
+    </record>
+
+    <record id="doctor_kumar" model="medical.doctor">
+        <field name="name">Dr. Raj Kumar</field>
+        <field name="speciality">Cardiology</field>
+        <field name="email">raj.kumar@example.com</field>
+    </record>
+
+    <record id="doctor_garcia" model="medical.doctor">
+        <field name="name">Dr. Maria Garcia</field>
+        <field name="speciality">Dermatology</field>
+        <field name="email">maria.garcia@example.com</field>
+    </record>
+
+    <record id="doctor_ali" model="medical.doctor">
+        <field name="name">Dr. Omar Ali</field>
+        <field name="speciality">Orthopedics</field>
+        <field name="email">omar.ali@example.com</field>
+    </record>
+    <record id="patient_john_doe" model="medical.patient">
+        <field name="name">John Doe</field>
+        <field name="birth_date">1985-03-15</field>
+        <field name="gender">male</field>
+        <field name="phone">+1-555-0123</field>
+        <field name="email">john.doe@example.com</field>
+        <field name="city">New York</field>
+        <field name="blood_type">O+</field>
+    </record>
+
+    <record id="patient_jane_smith" model="medical.patient">
+        <field name="name">Jane Smith</field>
+        <field name="birth_date">1992-07-22</field>
+        <field name="gender">female</field>
+        <field name="phone">+1-555-0124</field>
+        <field name="email">jane.smith@example.com</field>
+        <field name="city">Los Angeles</field>
+        <field name="blood_type">A+</field>
+    </record>
+
+    <record id="patient_bob_johnson" model="medical.patient">
+        <field name="name">Bob Johnson</field>
+        <field name="birth_date">1978-11-10</field>
+        <field name="gender">male</field>
+        <field name="phone">+1-555-0125</field>
+        <field name="email">bob.johnson@example.com</field>
+        <field name="city">Chicago</field>
+        <field name="blood_type">B+</field>
+    </record>
+
+    <record id="patient_alice_brown" model="medical.patient">
+        <field name="name">Alice Brown</field>
+        <field name="birth_date">1990-05-18</field>
+        <field name="gender">female</field>
+        <field name="phone">+1-555-0126</field>
+        <field name="email">alice.brown@example.com</field>
+        <field name="city">Houston</field>
+        <field name="blood_type">AB+</field>
+    </record>
+
+    <record id="patient_charlie_wilson" model="medical.patient">
+        <field name="name">Charlie Wilson</field>
+        <field name="birth_date">1988-12-03</field>
+        <field name="gender">male</field>
+        <field name="phone">+1-555-0127</field>
+        <field name="email">charlie.wilson@example.com</field>
+        <field name="city">Phoenix</field>
+        <field name="blood_type">O-</field>
+    </record>
+
+    <!-- More sample patients -->
+    <record id="patient_lucy_martin" model="medical.patient">
+        <field name="name">Lucy Martin</field>
+        <field name="birth_date">1982-04-21</field>
+        <field name="gender">female</field>
+        <field name="phone">+1-555-0130</field>
+        <field name="email">lucy.martin@example.com</field>
+        <field name="city">San Francisco</field>
+        <field name="blood_type">A-</field>
+    </record>
+
+    <record id="patient_paul_santos" model="medical.patient">
+        <field name="name">Paul Santos</field>
+        <field name="birth_date">1975-09-12</field>
+        <field name="gender">male</field>
+        <field name="phone">+1-555-0131</field>
+        <field name="email">paul.santos@example.com</field>
+        <field name="city">Miami</field>
+        <field name="blood_type">B-</field>
+    </record>
+
+    <record id="patient_emma_roberts" model="medical.patient">
+        <field name="name">Emma Roberts</field>
+        <field name="birth_date">1998-02-14</field>
+        <field name="gender">female</field>
+        <field name="phone">+1-555-0132</field>
+        <field name="email">emma.roberts@example.com</field>
+        <field name="city">Seattle</field>
+        <field name="blood_type">O+</field>
+    </record>
+
+    <record id="patient_miguel_lopez" model="medical.patient">
+        <field name="name">Miguel Lopez</field>
+        <field name="birth_date">1969-07-30</field>
+        <field name="gender">male</field>
+        <field name="phone">+1-555-0133</field>
+        <field name="email">miguel.lopez@example.com</field>
+        <field name="city">San Diego</field>
+        <field name="blood_type">AB-</field>
+    </record>
+
+    <!-- Sample Appointments -->
+    <record id="appointment_john_today" model="medical.appointment">
+        <field name="patient_id" ref="patient_john_doe"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_date" eval="datetime.now()"/>
+        <field name="appointment_type">checkup</field>
+        <field name="reason">Annual checkup</field>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="appointment_jane_today" model="medical.appointment">
+        <field name="patient_id" ref="patient_jane_smith"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_date" eval="datetime.now() + timedelta(hours=2)"/>
+        <field name="appointment_type">follow_up</field>
+        <field name="reason">Follow-up consultation</field>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="appointment_bob_tomorrow" model="medical.appointment">
+        <field name="patient_id" ref="patient_bob_johnson"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_date" eval="datetime.now() + timedelta(days=1)"/>
+        <field name="appointment_type">consultation</field>
+        <field name="reason">Blood pressure check</field>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="appointment_alice_next_week" model="medical.appointment">
+        <field name="patient_id" ref="patient_alice_brown"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_date" eval="datetime.now() + timedelta(days=7)"/>
+        <field name="appointment_type">consultation</field>
+        <field name="reason">Vaccination</field>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="appointment_charlie_completed" model="medical.appointment">
+        <field name="patient_id" ref="patient_charlie_wilson"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_date" eval="datetime.now() - timedelta(days=2)"/>
+        <field name="appointment_type">consultation</field>
+        <field name="reason">General consultation</field>
+        <field name="state">completed</field>
+    </record>
+
+    <!-- Appointments linked to sample doctors -->
+    <record id="appointment_lucy_dr_smith" model="medical.appointment">
+        <field name="patient_id" ref="patient_lucy_martin"/>
+        <field name="doctor_id" ref="doctor_smith"/>
+        <field name="appointment_date" eval="(datetime.now() - timedelta(days=3)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="appointment_type">consultation</field>
+        <field name="reason">Skin rash</field>
+        <field name="state">completed</field>
+    </record>
+
+    <record id="appointment_paul_dr_chen" model="medical.appointment">
+        <field name="patient_id" ref="patient_paul_santos"/>
+        <field name="doctor_id" ref="doctor_chen"/>
+        <field name="appointment_date" eval="(datetime.now() + timedelta(days=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="appointment_type">checkup</field>
+        <field name="reason">Pediatric follow-up</field>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="appointment_emma_dr_kumar" model="medical.appointment">
+        <field name="patient_id" ref="patient_emma_roberts"/>
+        <field name="doctor_id" ref="doctor_kumar"/>
+        <field name="appointment_date" eval="(datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="appointment_type">consultation</field>
+        <field name="reason">Heart palpitations</field>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="appointment_miguel_dr_garcia" model="medical.appointment">
+        <field name="patient_id" ref="patient_miguel_lopez"/>
+        <field name="doctor_id" ref="doctor_garcia"/>
+        <field name="appointment_date" eval="(datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="appointment_type">consultation</field>
+        <field name="reason">Knee pain</field>
+        <field name="state">completed</field>
+    </record>
+
+    <!-- Sample Prescriptions -->
+    <record id="prescription_john_1" model="medical.prescription">
+        <field name="patient_id" ref="patient_john_doe"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_id" ref="appointment_john_today"/>
+        <field name="prescription_date" eval="(datetime.now() - timedelta(days=1)).date()"/>
+        <field name="state">prescribed</field>
+        <field name="notes">Take with food. Re-evaluate in 7 days.</field>
+    </record>
+
+    <record id="prescription_john_1_line1" model="medical.prescription.line">
+        <field name="prescription_id" ref="prescription_john_1"/>
+        <field name="medication_name">Amoxicillin</field>
+        <field name="medication_id" ref="drug_amoxicillin"/>
+        <field name="dosage">500 mg</field>
+        <field name="frequency">Three times daily</field>
+        <field name="duration">7 days</field>
+        <field name="quantity">21</field>
+        <field name="instructions">Take after meals. Finish the full course.</field>
+    </record>
+
+    <record id="prescription_jane_1" model="medical.prescription">
+        <field name="patient_id" ref="patient_jane_smith"/>
+        <field name="doctor_id" ref="base.user_root"/>
+        <field name="appointment_id" ref="appointment_jane_today"/>
+        <field name="prescription_date" eval="datetime.now().date()"/>
+        <field name="state">prescribed</field>
+        <field name="notes">Use as needed for pain. Avoid alcohol.</field>
+    </record>
+
+    <record id="prescription_jane_1_line1" model="medical.prescription.line">
+        <field name="prescription_id" ref="prescription_jane_1"/>
+        <field name="medication_name">Ibuprofen</field>
+        <field name="medication_id" ref="drug_ibuprofen"/>
+        <field name="dosage">200 mg</field>
+        <field name="frequency">Every 6-8 hours as needed</field>
+        <field name="duration">5 days</field>
+        <field name="quantity">10</field>
+        <field name="instructions">Do not exceed 1200 mg/day. Take with food if stomach upset.</field>
+    </record>
+
+    <record id="prescription_lucy_1" model="medical.prescription">
+        <field name="patient_id" ref="patient_lucy_martin"/>
+        <field name="doctor_id" ref="doctor_smith"/>
+        <field name="appointment_id" ref="appointment_lucy_dr_smith"/>
+        <field name="prescription_date" eval="(datetime.now() - timedelta(days=2)).date()"/>
+        <field name="state">prescribed</field>
+        <field name="notes">Apply cream twice daily. Reassess in 1 week.</field>
+    </record>
+
+    <record id="prescription_lucy_1_line1" model="medical.prescription.line">
+        <field name="prescription_id" ref="prescription_lucy_1"/>
+        <field name="medication_name">Hydrocortisone Cream 1%</field>
+        <field name="medication_id" ref="drug_hydrocortisone"/>
+        <field name="dosage">Apply thin layer</field>
+        <field name="frequency">Twice daily</field>
+        <field name="duration">7 days</field>
+        <field name="quantity">1</field>
+        <field name="instructions">Apply to affected area only. Do not use on open wounds.</field>
+    </record>
+</odoo>
+
+<!-- Drug master data -->
+<odoo>
+    <record id="drug_amoxicillin" model="medical.drug">
+        <field name="name">Amoxicillin</field>
+        <field name="code">AMX-500</field>
+        <field name="default_dosage">500 mg</field>
+        <field name="default_frequency">Three times daily</field>
+        <field name="default_duration">7 days</field>
+    </record>
+
+    <record id="drug_ibuprofen" model="medical.drug">
+        <field name="name">Ibuprofen</field>
+        <field name="code">IBU-200</field>
+        <field name="default_dosage">200 mg</field>
+        <field name="default_frequency">Every 6-8 hours as needed</field>
+        <field name="default_duration">5 days</field>
+    </record>
+
+    <record id="drug_hydrocortisone" model="medical.drug">
+        <field name="name">Hydrocortisone Cream 1%</field>
+        <field name="code">HDC-1P</field>
+        <field name="default_dosage">Apply thin layer</field>
+        <field name="default_frequency">Twice daily</field>
+        <field name="default_duration">7 days</field>
+    </record>
+</odoo>

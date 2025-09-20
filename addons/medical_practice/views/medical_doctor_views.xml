@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View for Medical Doctors -->
+    <record id="view_medical_doctor_tree" model="ir.ui.view">
+        <field name="name">medical.doctor.tree</field>
+        <field name="model">medical.doctor</field>
+        <field name="arch" type="xml">
+            <tree string="Doctors">
+                <field name="name"/>
+                <field name="speciality"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="patient_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Medical Doctors -->
+    <record id="view_medical_doctor_form" model="ir.ui.view">
+        <field name="name">medical.doctor.form</field>
+        <field name="model">medical.doctor</field>
+        <field name="arch" type="xml">
+            <form string="Doctor">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_patients" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-users">
+                            <field name="patient_count" widget="statinfo" string="Patients"/>
+                        </button>
+                    </div>
+                    
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Doctor Name"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="speciality"/>
+                        </group>
+                        <group>
+                            <field name="license_number"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View for Medical Doctors -->
+    <record id="view_medical_doctor_search" model="ir.ui.view">
+        <field name="name">medical.doctor.search</field>
+        <field name="model">medical.doctor</field>
+        <field name="arch" type="xml">
+            <search string="Search Doctors">
+                <field name="name"/>
+                <field name="speciality"/>
+                <field name="email"/>
+                <separator/>
+                <filter name="active_doctors" string="Active Doctors" domain="[('active', '=', True)]"/>
+                <filter name="archived_doctors" string="Archived Doctors" domain="[('active', '=', False)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_speciality" string="Speciality" context="{'group_by': 'speciality'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for Medical Doctors -->
+    <record id="action_medical_doctor" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">medical.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_medical_doctor_tree"/>
+        <field name="search_view_id" ref="view_medical_doctor_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first doctor!
+            </p>
+            <p>
+                Add doctors to your medical practice to manage appointments and patient care.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items for Doctors -->
+    <menuitem id="menu_medical_doctors" 
+              name="Doctors" 
+              parent="menu_medical_main" 
+              sequence="15"/>
+
+    <menuitem id="menu_medical_doctor_list" 
+              name="All Doctors" 
+              parent="menu_medical_doctors" 
+              action="action_medical_doctor" 
+              sequence="10"/>
+</odoo>

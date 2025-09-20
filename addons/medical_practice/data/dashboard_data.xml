@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="default_medical_dashboard" model="medical.dashboard">
+        <field name="name">Medical Dashboard</field>
+    </record>
+</odoo>

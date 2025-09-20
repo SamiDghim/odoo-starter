@@ -1,0 +1,206 @@
+<odoo>
+  <!-- Action -->
+  <record id="action_medical_dashboard" model="ir.actions.act_window">
+    <field name="name">Medical Dashboard</field> <field name="res_model">medical.dashboard</field>
+    <field name="view_mode">form</field>
+    <field name="target">current</field>
+    <field name="context">{'create': False, 'edit': False}</field>
+    <field name="res_id" ref="default_medical_dashboard"/>
+    <field name="domain">[]</field>
+  </record>
+
+  <!-- Dashboard Menu under Medical Practice -->
+  <menuitem id="menu_medical_dashboard"
+            name="Dashboard"
+            parent="menu_medical_main"
+            action="action_medical_dashboard"
+            sequence="5"/>
+
+  <!-- Chart Views for Appointments - Line Chart -->
+  <record id="view_appointment_line_chart" model="ir.ui.view">
+    <field name="name">medical.appointment.line.chart</field>
+    <field name="model">medical.appointment</field>
+    <field name="arch" type="xml">
+      <graph string="Appointment Trends" type="line">
+        <field name="appointment_date" type="col" interval="day"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Chart Views for Patients - Line Chart -->
+  <record id="view_patient_line_chart" model="ir.ui.view">
+    <field name="name">medical.patient.line.chart</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <graph string="Patient Registration Trends" type="line">
+        <field name="create_date" type="col" interval="day"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Search view for Appointments with date filters -->
+  <record id="view_appointment_search_chart" model="ir.ui.view">
+    <field name="name">medical.appointment.search.chart</field>
+    <field name="model">medical.appointment</field>
+    <field name="arch" type="xml">
+      <search string="Appointment Search">
+        <filter name="last_30_days" string="Last 30 Days"
+                domain="[('appointment_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+        <filter name="last_7_days" string="Last 7 Days"
+                domain="[('appointment_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+        <filter name="this_month" string="This Month"
+                domain="[('appointment_date', '>=', context_today().replace(day=1).strftime('%Y-%m-%d'))]"/>
+      </search>
+    </field>
+  </record>
+
+  <!-- Search view for Patients with date filters -->
+  <record id="view_patient_search_chart" model="ir.ui.view">
+    <field name="name">medical.patient.search.chart</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <search string="Patient Search">
+        <filter name="last_30_days" string="Last 30 Days"
+                domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+        <filter name="last_7_days" string="Last 7 Days"
+                domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+        <filter name="this_month" string="This Month"
+                domain="[('create_date', '>=', context_today().replace(day=1).strftime('%Y-%m-%d'))]"/>
+      </search>
+    </field>
+  </record>
+
+  <!-- Vue Dashboard -->
+  <record id="view_medical_dashboard_form" model="ir.ui.view">
+    <field name="name">medical.dashboard.form</field>
+    <field name="model">medical.dashboard</field>
+    <field name="arch" type="xml">
+      <form string="Medical Dashboard" create="false" edit="false">
+        <sheet>
+          <div class="oe_title">
+            <h1>
+              <span class="o_form_label">📊 Medical Practice Dashboard</span>
+            </h1>
+          </div>
+
+          <!-- Smart Buttons Section -->
+          <div class="oe_button_box" name="button_box">
+            
+            <!-- Patient Statistics -->
+            <button name="action_open_patients"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-users">
+              <field name="patient_count" widget="statinfo" string="Total Patients"/>
+            </button>
+
+            <!-- Doctor Statistics -->
+            <button name="action_open_doctors"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-user-md">
+              <field name="doctor_count" widget="statinfo" string="Total Doctors"/>
+            </button>
+
+            <!-- Appointment Statistics -->
+            <button name="action_open_appointments"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-calendar-o">
+              <field name="appointment_count" widget="statinfo" string="Total Appointments"/>
+            </button>
+
+            <!-- Prescription Statistics -->
+            <button name="action_open_prescriptions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pills">
+              <field name="prescriptions_count" widget="statinfo" string="Total Ordonnances"/>
+            </button>
+          </div>
+
+          <!-- Chart Actions Section -->
+          <div class="row mt32">
+            <div class="col-md-12">
+              <h3>📈 Medical Practice Analytics</h3>
+              <div class="oe_form_group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <button name="action_appointment_line_chart"
+                            type="object"
+                            class="btn btn-primary btn-lg"
+                            style="width: 100%; margin-bottom: 10px; height: 60px;"
+                            string="📈 View Appointment Trends (Line Chart)"/>
+                  </div>
+                  <div class="col-md-6">
+                    <button name="action_patient_line_chart"
+                            type="object"
+                            class="btn btn-info btn-lg"
+                            style="width: 100%; margin-bottom: 10px; height: 60px;"
+                            string="👥 View Patient Registration Trends (Line Chart)"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+            <div class="col-md-6">
+              <div class="oe_form_group">
+                <h3>� Monthly Summary</h3>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="o_form_label">Appointments This Month:</div>
+                    <field name="appointments_this_month" readonly="1"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="o_form_label">Appointments Last Month:</div>
+                    <field name="appointments_last_month" readonly="1"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="o_form_label">New Patients This Month:</div>
+                    <field name="patients_this_month" readonly="1"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="o_form_label">New Patients Last Month:</div>
+                    <field name="patients_last_month" readonly="1"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="oe_form_group">
+                <h3>� Current Status</h3>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="o_form_label">Scheduled:</div>
+                    <field name="scheduled_appointments" readonly="1"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="o_form_label">Confirmed:</div>
+                    <field name="confirmed_appointments" readonly="1"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="o_form_label">Completed:</div>
+                    <field name="completed_appointments" readonly="1"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="o_form_label">Cancelled:</div>
+                    <field name="cancelled_appointments" readonly="1"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

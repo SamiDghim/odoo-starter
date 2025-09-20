@@ -43,6 +43,7 @@
                         <page name="medications" string="Medications">
                             <field name="prescription_line_ids">
                                 <tree editable="bottom">
+                                    <field name="medication_id"/>
                                     <field name="medication_name"/>
                                     <field name="dosage"/>
                                     <field name="frequency"/>
@@ -77,6 +78,31 @@
             <p>
                 Manage patient medications and prescriptions.
             </p>
+        </field>
+    </record>
+
+    <!-- Prescription Graph View -->
+    <record id="view_medical_prescription_graph" model="ir.ui.view">
+        <field name="name">medical.prescription.graph</field>
+        <field name="model">medical.prescription</field>
+        <field name="arch" type="xml">
+            <graph string="Prescriptions Chart" type="bar">
+                <field name="prescription_date" type="row" interval="month"/>
+                <field name="patient_id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Prescription Pivot View -->
+    <record id="view_medical_prescription_pivot" model="ir.ui.view">
+        <field name="name">medical.prescription.pivot</field>
+        <field name="model">medical.prescription</field>
+        <field name="arch" type="xml">
+            <pivot string="Prescriptions Analysis">
+                <field name="prescription_date" type="row" interval="month"/>
+                <field name="state" type="col"/>
+                <field name="patient_id" type="measure"/>
+            </pivot>
         </field>
     </record>
 </odoo>

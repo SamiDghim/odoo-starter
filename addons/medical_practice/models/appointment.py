@@ -17,7 +17,7 @@ class MedicalAppointment(models.Model):
     )
     
     patient_id = fields.Many2one('medical.patient', string='Patient', required=True, tracking=True)
-    doctor_id = fields.Many2one('res.users', string='Doctor', required=True, tracking=True)
+    doctor_id = fields.Many2one('medical.doctor', string='Doctor', required=True, tracking=True)
     appointment_date = fields.Datetime(string='Appointment Date/Time', required=True, tracking=True)
     duration = fields.Float(string='Duration (Hours)', default=1.0)
     end_time = fields.Datetime(string='End Time', compute='_compute_end_time', store=True)

@@ -8,6 +8,7 @@
             <tree>
                 <field name="patient_id"/>
                 <field name="name"/>
+                <field name="doctor_id"/>
                 <field name="age"/>
                 <field name="gender"/>
                 <field name="phone"/>
@@ -45,6 +46,7 @@
                             <field name="age"/>
                             <field name="gender"/>
                             <field name="blood_type"/>
+                            <field name="doctor_id"/>
                         </group>
                         <group name="contact_info" string="Contact Information">
                             <field name="phone"/>
@@ -104,6 +106,31 @@
             <p>
                 Register patients to start managing appointments and medical records.
             </p>
+        </field>
+    </record>
+
+    <!-- Patient Graph View -->
+    <record id="view_medical_patient_graph" model="ir.ui.view">
+        <field name="name">medical.patient.graph</field>
+        <field name="model">medical.patient</field>
+        <field name="arch" type="xml">
+            <graph string="Patient Statistics" type="bar">
+                <field name="create_date" type="row" interval="month"/>
+                <field name="gender" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Patient Pivot View -->
+    <record id="view_medical_patient_pivot" model="ir.ui.view">
+        <field name="name">medical.patient.pivot</field>
+        <field name="model">medical.patient</field>
+        <field name="arch" type="xml">
+            <pivot string="Patient Analysis">
+                <field name="create_date" type="row" interval="month"/>
+                <field name="gender" type="col"/>
+                <field name="city" type="row"/>
+            </pivot>
         </field>
     </record>
 </odoo>

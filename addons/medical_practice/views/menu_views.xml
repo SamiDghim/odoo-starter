@@ -1,52 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Main Medical Menu -->
-    <menuitem id="menu_medical_main" 
-              name="Medical Practice" 
-              sequence="10"/>
-
-    <!-- Patients Menu -->
-    <menuitem id="menu_medical_patients" 
-              name="Patients" 
-              parent="menu_medical_main" 
-              sequence="10"/>
-
+    <!-- Patient menu items with actions -->
     <menuitem id="menu_medical_patient_list" 
               name="All Patients" 
               parent="menu_medical_patients" 
               action="action_medical_patient" 
               sequence="10"/>
 
-    <!-- Appointments Menu -->
-    <menuitem id="menu_medical_appointments" 
-              name="Appointments" 
-              parent="menu_medical_main" 
-              sequence="20"/>
-
+    <!-- Appointment menu items with actions -->
     <menuitem id="menu_medical_appointment_all" 
               name="All Appointments" 
               parent="menu_medical_appointments" 
               action="action_medical_appointment" 
               sequence="10"/>
 
-    <!-- Medical Records Menu -->
-    <menuitem id="menu_medical_records" 
-              name="Medical Records" 
-              parent="menu_medical_main" 
-              sequence="30"/>
-
+    <!-- Medical Record menu items with actions -->
     <menuitem id="menu_medical_record_list" 
               name="All Records" 
               parent="menu_medical_records" 
               action="action_medical_record" 
               sequence="10"/>
 
-    <!-- Prescriptions Menu -->
-    <menuitem id="menu_medical_prescriptions" 
-              name="Prescriptions" 
-              parent="menu_medical_main" 
-              sequence="40"/>
-
+    <!-- Prescription menu items with actions -->
     <menuitem id="menu_medical_prescription_list" 
               name="All Prescriptions" 
               parent="menu_medical_prescriptions" 
