@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Appointment Tree View -->
+    <record id="view_medical_appointment_tree" model="ir.ui.view">
+        <field name="name">medical.appointment.tree</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state=='completed'" decoration-info="state=='confirmed'" decoration-warning="state=='scheduled'">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="appointment_date"/>
+                <field name="appointment_type"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Appointment Form View -->
+    <record id="view_medical_appointment_form" model="ir.ui.view">
+        <field name="name">medical.appointment.form</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" invisible="state != 'scheduled'" class="oe_highlight"/>
+                    <button name="action_start" string="Start" type="object" invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_complete" string="Complete" type="object" invisible="state != 'in_progress'" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ['completed', 'cancelled']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="scheduled,confirmed,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+
+                    <group>
+                        <group name="appointment_info" string="Appointment Information">
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="appointment_type"/>
+                        </group>
+                        <group name="schedule_info" string="Schedule">
+                            <field name="appointment_date"/>
+                            <field name="duration"/>
+                            <field name="end_time"/>
+                        </group>
+                    </group>
+
+                    <group name="medical_info" string="Medical Information">
+                        <field name="reason" placeholder="Reason for visit..."/>
+                        <field name="notes" placeholder="Doctor's notes..." readonly="state not in ['in_progress', 'completed']"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_medical_appointment_calendar" model="ir.ui.view">
+        <field name="name">medical.appointment.calendar</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments" date_start="appointment_date" color="doctor_id">
+                <field name="patient_id"/>
+                <field name="appointment_type"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Appointment Action -->
+    <record id="action_medical_appointment" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">medical.appointment</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Schedule your first appointment!
+            </p>
+            <p>
+                Create appointments to manage patient visits and consultations.
+            </p>
+        </field>
+    </record>
+
+    <!-- Today's Appointment Action -->
+    <record id="action_medical_appointment_today" model="ir.actions.act_window">
+        <field name="name">Today's Appointments</field>
+        <field name="res_model">medical.appointment</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="domain">[('appointment_date', '&gt;=', context_today()), ('appointment_date', '&lt;=', context_today())]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No appointments scheduled for today!
+            </p>
+            <p>
+                Schedule appointments to see them here.
+            </p>
+        </field>
+    </record>
+</odoo>

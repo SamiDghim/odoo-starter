@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Prescription Tree View -->
+    <record id="view_medical_prescription_tree" model="ir.ui.view">
+        <field name="name">medical.prescription.tree</field>
+        <field name="model">medical.prescription</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state=='completed'" decoration-info="state=='prescribed'">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="prescription_date"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Prescription Form View -->
+    <record id="view_medical_prescription_form" model="ir.ui.view">
+        <field name="name">medical.prescription.form</field>
+        <field name="model">medical.prescription</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,prescribed,dispensed,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+
+                    <group>
+                        <group name="prescription_info" string="Prescription Information">
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="appointment_id"/>
+                            <field name="prescription_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="medications" string="Medications">
+                            <field name="prescription_line_ids">
+                                <tree editable="bottom">
+                                    <field name="medication_name"/>
+                                    <field name="dosage"/>
+                                    <field name="frequency"/>
+                                    <field name="duration"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="instructions" string="Instructions">
+                            <field name="notes" nolabel="1" placeholder="Additional instructions..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Prescription Action -->
+    <record id="action_medical_prescription" model="ir.actions.act_window">
+        <field name="name">Prescriptions</field>
+        <field name="res_model">medical.prescription</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first prescription!
+            </p>
+            <p>
+                Manage patient medications and prescriptions.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Medical Record Tree View -->
+    <record id="view_medical_record_tree" model="ir.ui.view">
+        <field name="name">medical.record.tree</field>
+        <field name="model">medical.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="record_date"/>
+                <field name="diagnosis"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Medical Record Form View -->
+    <record id="view_medical_record_form" model="ir.ui.view">
+        <field name="name">medical.record.form</field>
+        <field name="model">medical.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+
+                    <group>
+                        <group name="record_info" string="Record Information">
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="appointment_id"/>
+                            <field name="record_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="vital_signs" string="Vital Signs">
+                            <group>
+                                <group name="vitals_1">
+                                    <field name="temperature"/>
+                                    <field name="heart_rate"/>
+                                    <field name="weight"/>
+                                    <field name="height"/>
+                                    <field name="bmi"/>
+                                </group>
+                                <group name="vitals_2">
+                                    <field name="blood_pressure_systolic"/>
+                                    <field name="blood_pressure_diastolic"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="examination" string="Examination">
+                            <group>
+                                <field name="chief_complaint" nolabel="1" placeholder="Chief complaint..."/>
+                                <field name="history_present_illness" nolabel="1" placeholder="History of present illness..."/>
+                                <field name="physical_examination" nolabel="1" placeholder="Physical examination..."/>
+                            </group>
+                        </page>
+                        <page name="diagnosis" string="Diagnosis &amp; Treatment">
+                            <group>
+                                <field name="diagnosis" nolabel="1" placeholder="Diagnosis..."/>
+                                <field name="treatment_plan" nolabel="1" placeholder="Treatment plan..."/>
+                                <field name="follow_up_instructions" nolabel="1" placeholder="Follow-up instructions..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Medical Record Action -->
+    <record id="action_medical_record" model="ir.actions.act_window">
+        <field name="name">Medical Records</field>
+        <field name="res_model">medical.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first medical record!
+            </p>
+            <p>
+                Document patient visits, examinations, and medical findings.
+            </p>
+        </field>
+    </record>
+</odoo>
