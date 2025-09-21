@@ -99,35 +99,28 @@
     <field name="arch" type="xml">
       <form string="Medical Dashboard" create="false" edit="false">
         <sheet>
-          <div class="oe_title">
-            <h1>
-              <span class="o_form_label">📊 Medical Practice Dashboard</span>
-            </h1>
-          </div>
+          <!-- Title removed: UI simplified per user request -->
 
           <!-- Smart Buttons Section -->
           <div class="oe_button_box medical-dashboard" name="button_box">
-            <style>
-              @import url('/medical_practice/static/src/css/dashboard.css');
-            </style>
 
             <!-- Patient Statistics -->
-            <button name="action_open_patients" type="object" class="oe_stat_button total-patients smart_button_patients" icon="fa-users" style="color: #fff !important;">
-              <field name="patient_count" widget="statinfo" string="Total Patients" style="color: #fff !important;"/>
+            <button name="action_open_patients" type="object" class="oe_stat_button total-patients smart_button_patients" icon="fa-users">
+              <field name="patient_count" widget="statinfo" string="Total Patients"/>
             </button>
 
             <!-- Doctor Statistics -->
-            <button name="action_open_doctors" type="object" class="oe_stat_button total-doctors smart_button_doctors" icon="fa-user-md" style="color: #fff !important;">
+            <button name="action_open_doctors" type="object" class="oe_stat_button total-doctors smart_button_doctors" icon="fa-user-md">
               <field name="doctor_count" widget="statinfo" string="Total Doctors"/>
             </button>
 
             <!-- Appointment Statistics -->
-            <button name="action_open_appointments" type="object" class="oe_stat_button total-appointments smart_button_appointments" icon="fa-calendar-o" style="color: #fff !important;">
+            <button name="action_open_appointments" type="object" class="oe_stat_button total-appointments smart_button_appointments" icon="fa-calendar-o">
               <field name="appointment_count" widget="statinfo" string="Total Appointments"/>
             </button>
 
             <!-- Prescription Statistics -->
-            <button name="action_open_prescriptions" type="object" class="oe_stat_button total-prescriptions smart_button_prescriptions" icon="fa-pills" style="color: #fff !important;">
+            <button name="action_open_prescriptions" type="object" class="oe_stat_button total-prescriptions smart_button_prescriptions" icon="fa-pills">
               <field name="prescriptions_count" widget="statinfo" string="Total Ordonnances"/>
             </button>
           </div>
@@ -135,13 +128,10 @@
           <!-- Direct Chart Display Section -->
           <div class="row mt32">
             <div class="col-md-12">
-              <h3>📈 Doctors vs Patients Analysis</h3>
+              <!-- Chart title removed: chart displayed without additional headings -->
               <div class="card" style="border: 1px solid #dee2e6; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                <div class="card-header" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; padding: 15px; border-radius: 8px 8px 0 0;">
-                  <h5 style="margin: 0; color: #495057; font-size: 1.1rem; font-weight: 500;">👨‍⚕️ Doctor-Patient Relationship Chart</h5>
-                </div>
-                <div class="card-body" style="padding: 20px; height: 400px;">
-                  <field name="doctor_patient_chart" 
+                <div class="card-body" style="padding: 20px; min-height: 520px;">
+                  <field name="dashboard_charts" 
                          widget="html" 
                          readonly="1"
                          nolabel="1"/>

@@ -1,7 +1,7 @@
-<odoo>
-  <template id="assets_backend" inherit_id="web.assets_backend" name="medical_practice assets backend">
-    <xpath expr="/" position="inside">
-      <link rel="stylesheet" type="text/css" href="/medical_practice/static/src/css/dashboard.css"/>
-    </xpath>
-  </template>
-</odoo>
+<!--
+  Deprecated: this file attempted to inherit `web.assets_backend` and caused
+  an External ID error in some environments. The CSS asset is now registered
+  using the module `__manifest__['assets']` entry. Keep this file empty to
+  avoid double-registration or registry load errors.
+-->
+

@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.eggs/
+*.pyc
+*.pyo
+.env
+.venv/
+venv/
+
+# Odoo specific
+*.log
+*.sql
+*.dump
+sessions/
+addons/*/__pycache__/
+*.db
+*.sqlite3
+
+# Node / frontend
+node_modules/
+dist/
+build/
+
+# Docker
+docker-compose.override.yml
+.envrc
+.env.local
+Dockerfile*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Editor temp files
+*~
+*.swp
+
+# Local settings
+local_addons/
+
+# Coverage
+htmlcov/
+.coverage
+
+# Logs
+logs/
+
+# Python compiled
+*.so
+
+# Ignore generated Odoo addons zip
+*.zip
