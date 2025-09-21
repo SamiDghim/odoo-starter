@@ -4,3 +4,4 @@ from . import medical_record
 from . import prescription
 from . import medical_dashboard
 from . import medical_doctor
+from . import medical_drug

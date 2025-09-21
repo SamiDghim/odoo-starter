@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="spec_general_medicine" model="medical.speciality">
+        <field name="name">General Medicine</field>
+    </record>
+    <record id="spec_pediatrics" model="medical.speciality">
+        <field name="name">Pediatrics</field>
+    </record>
+    <record id="spec_cardiology" model="medical.speciality">
+        <field name="name">Cardiology</field>
+    </record>
+    <record id="spec_dermatology" model="medical.speciality">
+        <field name="name">Dermatology</field>
+    </record>
+    <record id="spec_orthopedics" model="medical.speciality">
+        <field name="name">Orthopedics</field>
+    </record>
+</odoo>

@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Doctors">
                 <field name="name"/>
-                <field name="speciality"/>
+                <field name="speciality_id"/>
                 <field name="email"/>
                 <field name="phone"/>
                 <field name="patient_count"/>
@@ -41,7 +41,7 @@
                         <group>
                             <field name="email"/>
                             <field name="phone"/>
-                            <field name="speciality"/>
+                            <field name="speciality_id"/>
                         </group>
                         <group>
                             <field name="license_number"/>
@@ -60,14 +60,14 @@
         <field name="arch" type="xml">
             <search string="Search Doctors">
                 <field name="name"/>
-                <field name="speciality"/>
+                <field name="speciality_id"/>
                 <field name="email"/>
                 <separator/>
                 <filter name="active_doctors" string="Active Doctors" domain="[('active', '=', True)]"/>
                 <filter name="archived_doctors" string="Archived Doctors" domain="[('active', '=', False)]"/>
                 <separator/>
                 <group expand="0" string="Group By">
-                    <filter name="group_by_speciality" string="Speciality" context="{'group_by': 'speciality'}"/>
+                    <filter name="group_by_speciality" string="Speciality" context="{'group_by': 'speciality_id'}"/>
                 </group>
             </search>
         </field>

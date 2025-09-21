@@ -4,31 +4,31 @@
     <!-- Additional sample doctors -->
     <record id="doctor_smith" model="medical.doctor">
         <field name="name">Dr. Anna Smith</field>
-        <field name="speciality">General Medicine</field>
+        <field name="speciality_id" ref="spec_general_medicine"/>
         <field name="email">anna.smith@example.com</field>
     </record>
 
     <record id="doctor_chen" model="medical.doctor">
         <field name="name">Dr. Li Chen</field>
-        <field name="speciality">Pediatrics</field>
+        <field name="speciality_id" ref="spec_pediatrics"/>
         <field name="email">li.chen@example.com</field>
     </record>
 
     <record id="doctor_kumar" model="medical.doctor">
         <field name="name">Dr. Raj Kumar</field>
-        <field name="speciality">Cardiology</field>
+        <field name="speciality_id" ref="spec_cardiology"/>
         <field name="email">raj.kumar@example.com</field>
     </record>
 
     <record id="doctor_garcia" model="medical.doctor">
         <field name="name">Dr. Maria Garcia</field>
-        <field name="speciality">Dermatology</field>
+        <field name="speciality_id" ref="spec_dermatology"/>
         <field name="email">maria.garcia@example.com</field>
     </record>
 
     <record id="doctor_ali" model="medical.doctor">
         <field name="name">Dr. Omar Ali</field>
-        <field name="speciality">Orthopedics</field>
+        <field name="speciality_id" ref="spec_orthopedics"/>
         <field name="email">omar.ali@example.com</field>
     </record>
     <record id="patient_john_doe" model="medical.patient">
@@ -205,6 +205,30 @@
         <field name="state">completed</field>
     </record>
 
+    <!-- Drug master data -->
+    <record id="drug_amoxicillin" model="medical.drug">
+        <field name="name">Amoxicillin</field>
+        <field name="code">AMX-500</field>
+        <field name="default_dosage">500 mg</field>
+        <field name="default_frequency">Three times daily</field>
+        <field name="default_duration">7 days</field>
+    </record>
+
+    <record id="drug_ibuprofen" model="medical.drug">
+        <field name="name">Ibuprofen</field>
+        <field name="code">IBU-200</field>
+        <field name="default_dosage">200 mg</field>
+        <field name="default_frequency">Every 6-8 hours as needed</field>
+        <field name="default_duration">5 days</field>
+    </record>
+    <record id="drug_hydrocortisone" model="medical.drug">
+        <field name="name">Hydrocortisone Cream 1%</field>
+        <field name="code">HDC-1P</field>
+        <field name="default_dosage">Apply thin layer</field>
+        <field name="default_frequency">Twice daily</field>
+        <field name="default_duration">7 days</field>
+    </record>
+
     <!-- Sample Prescriptions -->
     <record id="prescription_john_1" model="medical.prescription">
         <field name="patient_id" ref="patient_john_doe"/>
@@ -265,31 +289,5 @@
         <field name="quantity">1</field>
         <field name="instructions">Apply to affected area only. Do not use on open wounds.</field>
     </record>
-</odoo>
 
-<!-- Drug master data -->
-<odoo>
-    <record id="drug_amoxicillin" model="medical.drug">
-        <field name="name">Amoxicillin</field>
-        <field name="code">AMX-500</field>
-        <field name="default_dosage">500 mg</field>
-        <field name="default_frequency">Three times daily</field>
-        <field name="default_duration">7 days</field>
-    </record>
-
-    <record id="drug_ibuprofen" model="medical.drug">
-        <field name="name">Ibuprofen</field>
-        <field name="code">IBU-200</field>
-        <field name="default_dosage">200 mg</field>
-        <field name="default_frequency">Every 6-8 hours as needed</field>
-        <field name="default_duration">5 days</field>
-    </record>
-
-    <record id="drug_hydrocortisone" model="medical.drug">
-        <field name="name">Hydrocortisone Cream 1%</field>
-        <field name="code">HDC-1P</field>
-        <field name="default_dosage">Apply thin layer</field>
-        <field name="default_frequency">Twice daily</field>
-        <field name="default_duration">7 days</field>
-    </record>
 </odoo>

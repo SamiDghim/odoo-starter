@@ -21,9 +21,10 @@
         'security/ir.model.access.csv',
         
         # Data
-        'data/sequences.xml',
-        'data/dashboard_data.xml',
-        'data/sample_data.xml',
+    'data/sequences.xml',
+    'data/dashboard_data.xml',
+    'data/specialities.xml',
+    'data/sample_data.xml',
         
         # Base menu structure (no action references)
         'views/base_menu.xml',
@@ -35,11 +36,16 @@
         'views/medical_record_views.xml',
         'views/prescription_views.xml',
         'views/medical_dashboard_views.xml',
-        'views/dashboard_views.xml',
+    'views/dashboard_views.xml',
         
         # Menu items that reference actions (load last)
         'views/menu_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'medical_practice/static/src/css/dashboard.css',
+        ],
+    },
     'installable': True,
     'application': True,
     'auto_install': False,

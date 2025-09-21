@@ -106,41 +106,28 @@
           </div>
 
           <!-- Smart Buttons Section -->
-          <div class="oe_button_box" name="button_box">
-            
+          <div class="oe_button_box medical-dashboard" name="button_box">
+            <style>
+              @import url('/medical_practice/static/src/css/dashboard.css');
+            </style>
+
             <!-- Patient Statistics -->
-            <button name="action_open_patients"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-users"
-                    style="background-color:#20c997;color:#fff;padding:8px;border-radius:8px;">
-              <field name="patient_count" widget="statinfo" string="Total Patients"/>
+            <button name="action_open_patients" type="object" class="oe_stat_button total-patients smart_button_patients" icon="fa-users" style="color: #fff !important;">
+              <field name="patient_count" widget="statinfo" string="Total Patients" style="color: #fff !important;"/>
             </button>
 
             <!-- Doctor Statistics -->
-            <button name="action_open_doctors"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-user-md"
-                    style="background-color:#6f42c1;color:#fff;padding:8px;border-radius:8px;">
+            <button name="action_open_doctors" type="object" class="oe_stat_button total-doctors smart_button_doctors" icon="fa-user-md" style="color: #fff !important;">
               <field name="doctor_count" widget="statinfo" string="Total Doctors"/>
             </button>
 
             <!-- Appointment Statistics -->
-            <button name="action_open_appointments"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-calendar-o"
-                    style="background-color:#fd7e14;color:#fff;padding:8px;border-radius:8px;">
+            <button name="action_open_appointments" type="object" class="oe_stat_button total-appointments smart_button_appointments" icon="fa-calendar-o" style="color: #fff !important;">
               <field name="appointment_count" widget="statinfo" string="Total Appointments"/>
             </button>
 
             <!-- Prescription Statistics -->
-            <button name="action_open_prescriptions"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-pills"
-                    style="background-color:#dc3545;color:#fff;padding:8px;border-radius:8px;">
+            <button name="action_open_prescriptions" type="object" class="oe_stat_button total-prescriptions smart_button_prescriptions" icon="fa-pills" style="color: #fff !important;">
               <field name="prescriptions_count" widget="statinfo" string="Total Ordonnances"/>
             </button>
           </div>

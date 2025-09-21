@@ -1,0 +1,7 @@
+<odoo>
+  <template id="assets_backend" inherit_id="web.assets_backend" name="medical_practice assets backend">
+    <xpath expr="/" position="inside">
+      <link rel="stylesheet" type="text/css" href="/medical_practice/static/src/css/dashboard.css"/>
+    </xpath>
+  </template>
+</odoo>

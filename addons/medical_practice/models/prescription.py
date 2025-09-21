@@ -41,8 +41,8 @@ class MedicalPrescriptionLine(models.Model):
     _rec_name = 'medication_name'
 
     prescription_id = fields.Many2one('medical.prescription', string='Prescription', required=True, ondelete='cascade')
-    medication_id = fields.Many2one('medical.drug', string='Medication')
-    medication_name = fields.Char(string='Medication', required=True)
+    medication_id = fields.Many2one('medical.drug', string='Medication (product)')
+    medication_name = fields.Char(string='Medication Name', required=True)
     dosage = fields.Char(string='Dosage', required=True)
     frequency = fields.Char(string='Frequency', required=True)
     duration = fields.Char(string='Duration', required=True)
