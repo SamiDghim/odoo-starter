@@ -1,147 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- Action -->
+  <!-- Single clean medical dashboard views/actions file -->
+
+  <!-- Patients by Blood Type Pie Chart -->
+  <record id="view_patient_bloodtype_pie" model="ir.ui.view">
+    <field name="name">medical.patient.bloodtype.pie</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <graph string="Patients by Blood Type" type="pie">
+        <field name="blood_type" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Patients per Doctor (bar) -->
+  <record id="view_patients_per_doctor_graph" model="ir.ui.view">
+    <field name="name">medical.patient.per.doctor.2025.graph</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <graph string="Patients per Doctor (2025)" type="bar">
+        <field name="doctor_id" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Patients per Month (2025) -->
+  <record id="view_patients_per_week_graph" model="ir.ui.view">
+    <field name="name">medical.patient.per.month.2025.graph</field>
+    <field name="model">medical.patient</field>
+    <field name="arch" type="xml">
+      <graph string="Patients per Month (2025)" type="line">
+        <field name="create_date" type="col" interval="month"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Prescriptions per Doctor (bar) -->
+  <record id="view_prescriptions_per_doctor_graph" model="ir.ui.view">
+    <field name="name">medical.prescription.per.doctor.2025.graph</field>
+    <field name="model">medical.prescription</field>
+    <field name="arch" type="xml">
+      <graph string="Prescriptions per Doctor (2025)" type="bar">
+        <field name="doctor_id" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Prescriptions per Month (2025) -->
+  <record id="view_prescriptions_per_month_graph" model="ir.ui.view">
+    <field name="name">medical.prescription.per.month.2025.graph</field>
+    <field name="model">medical.prescription</field>
+    <field name="arch" type="xml">
+      <graph string="Prescriptions per Month (2025)" type="line">
+        <field name="prescription_date" type="col" interval="month"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- Actions -->
+  <record id="action_patient_bloodtype_pie" model="ir.actions.act_window">
+    <field name="name">Patients by Blood Type</field>
+    <field name="res_model">medical.patient</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_patient_bloodtype_pie"/>
+    <field name="target">current</field>
+  </record>
+
+  <record id="action_patients_per_doctor" model="ir.actions.act_window">
+    <field name="name">Patients per Doctor (2025)</field>
+    <field name="res_model">medical.patient</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_patients_per_doctor_graph"/>
+    <field name="target">current</field>
+    <field name="domain">[('create_date', '>=', '2025-01-01'), ('create_date', '&lt;', '2026-01-01')]</field>
+  </record>
+
+  <record id="action_patients_per_week" model="ir.actions.act_window">
+    <field name="name">Patients per Month (2025)</field>
+    <field name="res_model">medical.patient</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_patients_per_week_graph"/>
+    <field name="target">current</field>
+    <field name="domain">[('create_date', '>=', '2025-01-01'), ('create_date', '&lt;', '2026-01-01')]</field>
+  </record>
+
+  <record id="action_prescriptions_per_doctor" model="ir.actions.act_window">
+    <field name="name">Prescriptions per Doctor (2025)</field>
+    <field name="res_model">medical.prescription</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_prescriptions_per_doctor_graph"/>
+    <field name="target">current</field>
+    <field name="domain">[('prescription_date', '>=', '2025-01-01'), ('prescription_date', '&lt;', '2026-01-01')]</field>
+  </record>
+
+  <record id="action_prescriptions_per_month" model="ir.actions.act_window">
+    <field name="name">Prescriptions per Month (2025)</field>
+    <field name="res_model">medical.prescription</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="view_prescriptions_per_month_graph"/>
+    <field name="target">current</field>
+    <field name="domain">[('prescription_date', '>=', '2025-01-01'), ('prescription_date', '&lt;', '2026-01-01')]</field>
+  </record>
+
+  <!-- Medical Dashboard action and menu -->
   <record id="action_medical_dashboard" model="ir.actions.act_window">
     <field name="name">Medical Dashboard</field>
     <field name="res_model">medical.dashboard</field>
     <field name="view_mode">form</field>
     <field name="target">current</field>
-    <field name="context">{'create': False, 'edit': False}</field>
+    <field name="context">{"create": False, "edit": False}</field>
     <field name="res_id" ref="default_medical_dashboard"/>
     <field name="domain">[]</field>
   </record>
 
-  <!-- Chart Actions for Embedding -->
-  <record id="action_appointment_chart" model="ir.actions.act_window">
-    <field name="name">Appointment Trends</field>
-    <field name="res_model">medical.appointment</field>
-    <field name="view_mode">graph</field>
-    <field name="view_id" ref="view_appointment_line_chart"/>
-    <field name="search_view_id" ref="view_appointment_search_chart"/>
-    <field name="target">current</field>
-    <field name="context">{'search_default_last_30_days': 1}</field>
-  </record>
-
-  <record id="action_patient_chart" model="ir.actions.act_window">
-    <field name="name">Patient Registration Trends</field>
-    <field name="res_model">medical.patient</field>
-    <field name="view_mode">graph</field>
-    <field name="view_id" ref="view_patient_line_chart"/>
-    <field name="search_view_id" ref="view_patient_search_chart"/>
-    <field name="target">current</field>
-    <field name="context">{'search_default_last_30_days': 1}</field>
-  </record>
-
-  <!-- Dashboard Menu under Medical Practice -->
   <menuitem id="menu_medical_dashboard"
             name="Dashboard"
             parent="menu_medical_main"
             action="action_medical_dashboard"
             sequence="5"/>
 
-  <!-- Chart Views for Appointments - Line Chart -->
-  <record id="view_appointment_line_chart" model="ir.ui.view">
-    <field name="name">medical.appointment.line.chart</field>
-    <field name="model">medical.appointment</field>
-    <field name="arch" type="xml">
-      <graph string="Appointment Trends" type="line">
-        <field name="appointment_date" type="col" interval="day"/>
-      </graph>
-    </field>
-  </record>
-
-  <!-- Chart Views for Patients - Line Chart -->
-  <record id="view_patient_line_chart" model="ir.ui.view">
-    <field name="name">medical.patient.line.chart</field>
-    <field name="model">medical.patient</field>
-    <field name="arch" type="xml">
-      <graph string="Patient Registration Trends" type="line">
-        <field name="create_date" type="col" interval="day"/>
-      </graph>
-    </field>
-  </record>
-
-  <!-- Search view for Appointments with date filters -->
-  <record id="view_appointment_search_chart" model="ir.ui.view">
-    <field name="name">medical.appointment.search.chart</field>
-    <field name="model">medical.appointment</field>
-    <field name="arch" type="xml">
-      <search string="Appointment Search">
-        <filter name="last_30_days" string="Last 30 Days"
-                domain="[('appointment_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
-        <filter name="last_7_days" string="Last 7 Days"
-                domain="[('appointment_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
-        <filter name="this_month" string="This Month"
-                domain="[('appointment_date', '>=', context_today().replace(day=1).strftime('%Y-%m-%d'))]"/>
-      </search>
-    </field>
-  </record>
-
-  <!-- Search view for Patients with date filters -->
-  <record id="view_patient_search_chart" model="ir.ui.view">
-    <field name="name">medical.patient.search.chart</field>
-    <field name="model">medical.patient</field>
-    <field name="arch" type="xml">
-      <search string="Patient Search">
-        <filter name="last_30_days" string="Last 30 Days"
-                domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
-        <filter name="last_7_days" string="Last 7 Days"
-                domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
-        <filter name="this_month" string="This Month"
-                domain="[('create_date', '>=', context_today().replace(day=1).strftime('%Y-%m-%d'))]"/>
-      </search>
-    </field>
-  </record>
-
-  <!-- Vue Dashboard -->
+  <!-- Dashboard form view -->
   <record id="view_medical_dashboard_form" model="ir.ui.view">
     <field name="name">medical.dashboard.form</field>
     <field name="model">medical.dashboard</field>
     <field name="arch" type="xml">
       <form string="Medical Dashboard" create="false" edit="false">
         <sheet>
-          <!-- Title removed: UI simplified per user request -->
-
-          <!-- Smart Buttons Section -->
           <div class="oe_button_box medical-dashboard" name="button_box">
-
-            <!-- Patient Statistics -->
             <button name="action_open_patients" type="object" class="oe_stat_button total-patients smart_button_patients" icon="fa-users">
               <field name="patient_count" widget="statinfo" string="Total Patients"/>
             </button>
-
-            <!-- Doctor Statistics -->
             <button name="action_open_doctors" type="object" class="oe_stat_button total-doctors smart_button_doctors" icon="fa-user-md">
               <field name="doctor_count" widget="statinfo" string="Total Doctors"/>
             </button>
-
-            <!-- Appointment Statistics -->
             <button name="action_open_appointments" type="object" class="oe_stat_button total-appointments smart_button_appointments" icon="fa-calendar-o">
               <field name="appointment_count" widget="statinfo" string="Total Appointments"/>
             </button>
-
-            <!-- Prescription Statistics -->
             <button name="action_open_prescriptions" type="object" class="oe_stat_button total-prescriptions smart_button_prescriptions" icon="fa-pills">
               <field name="prescriptions_count" widget="statinfo" string="Total Ordonnances"/>
             </button>
           </div>
 
-          <!-- Direct Chart Display Section -->
           <div class="row mt32">
             <div class="col-md-12">
-              <!-- Chart title removed: chart displayed without additional headings -->
               <div class="card" style="border: 1px solid #dee2e6; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                <div class="card-body" style="padding: 20px; min-height: 520px;">
-                  <field name="dashboard_charts" 
-                         widget="html" 
-                         readonly="1"
-                         nolabel="1"/>
+                <div class="card-body" style="padding: 20px; min-height: 320px;">
+                  <div class="o_dashboard_charts_container">
+                    <div class="row">
+                      <div class="col-md-6" style="padding:8px;">
+                        <button type="object" name="open_patients_graph" class="btn o_dashboard_chart_btn" string="Patients / Doctors (2025)"/>
+                      </div>
+                      <div class="col-md-6" style="padding:8px;">
+                        <button type="object" name="open_patients_week_graph" class="btn o_dashboard_chart_btn" string="Patients / Date (Monthly 2025)"/>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top:12px;">
+                      <div class="col-md-6" style="padding:8px;">
+                        <button type="object" name="open_prescriptions_doctor_graph" class="btn o_dashboard_chart_btn" string="Prescriptions / Doctors (2025)"/>
+                      </div>
+                      <div class="col-md-6" style="padding:8px;">
+                        <button type="object" name="open_prescriptions_month_graph" class="btn o_dashboard_chart_btn" string="Prescriptions / Date (Monthly 2025)"/>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top:12px;">
+                      <div class="col-md-12" style="padding:8px; text-align: center;">
+                        <button type="object" name="open_bloodtype_pie" class="btn o_dashboard_chart_btn" string="Blood Type Distribution"/>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </sheet>
       </form>
     </field>
   </record>
+
 </odoo>

@@ -1,4 +1,4 @@
-/* Base smart button styling targeting Odoo stat buttons */
+
 .medical-dashboard .oe_stat_button,
 .medical-dashboard .o_stat_button {
     display: inline-flex !important;
@@ -8,127 +8,43 @@
     border-radius: 0.375rem !important;
     font-weight: 600 !important;
     color: #fff !important;
-    text-decoration: none !important;
     margin: 0.25rem !important;
-    min-width: 110px !important;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06) !important;
 }
 
-/* Responsive: shrink on small screens */
-@media (max-width: 480px) {
-    .medical-dashboard .oe_stat_button, .medical-dashboard .o_stat_button { min-width: 80px !important; padding: 6px 8px !important; font-size: 12px !important; }
-}
-/* Medical Practice Dashboard Styles */
-
-/* Bootstrap-like Smart Button Styles */
-/* Bootstrap-like Smart Button Styles (apply to Odoo buttons that also have our classes) */
-.medical-dashboard .oe_stat_button.smart_button_patients,
-.medical-dashboard .o_stat_button.smart_button_patients,
-.medical-dashboard .oe_stat_button.smart_button_doctors,
-.medical-dashboard .o_stat_button.smart_button_doctors,
-.medical-dashboard .oe_stat_button.smart_button_appointments,
-.medical-dashboard .o_stat_button.smart_button_appointments,
-.medical-dashboard .oe_stat_button.smart_button_prescriptions,
-.medical-dashboard .o_stat_button.smart_button_prescriptions {
-    padding: 0.5rem 0.75rem !important;
-    font-size: 0.95rem !important;
-    border-radius: 0.375rem !important;
-    color: #fff !important;
-    border: 1px solid transparent !important;
-    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, transform 0.08s ease-in-out !important;
-    cursor: pointer !important;
-}
-
-/* Individual colors (flat, Bootstrap-like) */
-.medical-dashboard .oe_stat_button.smart_button_patients, .medical-dashboard .o_stat_button.smart_button_patients { background-color: #198754 !important; border-color: #198754 !important; }
-.medical-dashboard .oe_stat_button.smart_button_doctors, .medical-dashboard .o_stat_button.smart_button_doctors  { background-color: #0d6efd !important; border-color: #0d6efd !important; }
-.medical-dashboard .oe_stat_button.smart_button_appointments, .medical-dashboard .o_stat_button.smart_button_appointments { background-color: #fd7e14 !important; border-color: #fd7e14 !important; }
-.medical-dashboard .oe_stat_button.smart_button_prescriptions, .medical-dashboard .o_stat_button.smart_button_prescriptions { background-color: #6f42c1 !important; border-color: #6f42c1 !important; }
-
-/* Hover / active states: slightly darker */
-.medical-dashboard .oe_stat_button.smart_button_patients:hover, .medical-dashboard .o_stat_button.smart_button_patients:hover { background-color: #157347 !important; border-color: #157347 !important; }
-.medical-dashboard .oe_stat_button.smart_button_doctors:hover, .medical-dashboard .o_stat_button.smart_button_doctors:hover  { background-color: #0b5ed7 !important; border-color: #0b5ed7 !important; }
-.medical-dashboard .oe_stat_button.smart_button_appointments:hover, .medical-dashboard .o_stat_button.smart_button_appointments:hover { background-color: #e76b0f !important; border-color: #e76b0f !important; }
-.medical-dashboard .oe_stat_button.smart_button_prescriptions:hover, .medical-dashboard .o_stat_button.smart_button_prescriptions:hover { background-color: #5a2f99 !important; border-color: #5a2f99 !important; }
-
-/* Focus ring for accessibility */
-.medical-dashboard .oe_stat_button.smart_button_patients:focus,
-.medical-dashboard .o_stat_button.smart_button_patients:focus,
-.medical-dashboard .oe_stat_button.smart_button_doctors:focus,
-.medical-dashboard .o_stat_button.smart_button_doctors:focus,
-.medical-dashboard .oe_stat_button.smart_button_appointments:focus,
-.medical-dashboard .o_stat_button.smart_button_appointments:focus,
-.medical-dashboard .oe_stat_button.smart_button_prescriptions:focus,
-.medical-dashboard .o_stat_button.smart_button_prescriptions:focus {
-    outline: 0 !important;
-    box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.25) !important; /* subtle focus ring */
-}
-
-/* Keep icon and stat text white */
-.medical-dashboard .oe_stat_button .fa,
 .medical-dashboard .oe_stat_button i,
+.medical-dashboard .o_stat_button i {
+    color: #fff !important;
+}
+
 .medical-dashboard .oe_stat_button .o_stat_info,
-.medical-dashboard .oe_stat_button .o_stat_value,
-.medical-dashboard .oe_stat_button .o_stat_text,
-.medical-dashboard .o_stat_button .fa,
-.medical-dashboard .o_stat_button i,
-.medical-dashboard .o_stat_button .o_stat_info,
-.medical-dashboard .o_stat_button .o_stat_value,
-.medical-dashboard .o_stat_button .o_stat_text {
-    color: #ffffff !important;
+.medical-dashboard .o_stat_button .o_stat_info {
+    color: #fff !important;
 }
 
-/* General Smart Button Styling */
-.oe_stat_button {
-    transition: all 0.2s ease !important;
+.medical-dashboard .oe_stat_button .o_stat_info .o_stat_value,
+.medical-dashboard .o_stat_button .o_stat_info .o_stat_value {
+    color: #fff !important;
+}
+
+.medical-dashboard .smart_button_patients { background-color: #198754 !important; border-color: #198754 !important; }
+.medical-dashboard .smart_button_doctors  { background-color: #0d6efd !important; border-color: #0d6efd !important; }
+.medical-dashboard .smart_button_appointments { background-color: #fd7e14 !important; border-color: #fd7e14 !important; }
+.medical-dashboard .smart_button_prescriptions { background-color: #6f42c1 !important; border-color: #6f42c1 !important; }
+
+.o_dashboard_chart_btn {
+    display: block !important;
+    width: 100% !important;
+    height: 160px !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fb 100%) !important;
+    border: 1px solid #e3e6ea !important;
     border-radius: 8px !important;
-    margin: 5px !important;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.06) !important;
+    text-align: center !important;
+    padding: 18px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
 }
-
-/* Ensure icons and stat numbers inside our smart buttons are white */
-.medical-dashboard .o_stat_button .fa,
-.medical-dashboard .o_stat_button i,
-.medical-dashboard .o_stat_button .o_stat_info,
-.medical-dashboard .o_stat_button .o_stat_value,
-.medical-dashboard .o_stat_button .o_stat_text {
-    color: #ffffff !important;
-}
-
-/* Specifically target the statinfo widget number that is rendered inside the field widget */
-.medical-dashboard .o_dashboard_card .o_stat_button .o_stat_info .o_stat_value,
-.medical-dashboard .o_dashboard_card .oe_stat_button .o_stat_info .o_stat_value {
-    color: #ffffff !important;
-}
-
-/* Dashboard specific styles */
-.medical_dashboard_title {
-    color: #495057;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.dashboard_chart_card {
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dashboard_chart_header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-    padding: 15px;
-    border-radius: 8px 8px 0 0;
-}
-
-.dashboard_chart_body {
-    padding: 20px;
-    height: 400px;
-}
-
-.dashboard_chart_title {
-    margin: 0;
-    color: #495057;
-    font-size: 1.1rem;
-    font-weight: 500;
+.o_dashboard_chart_btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.08) !important;
 }

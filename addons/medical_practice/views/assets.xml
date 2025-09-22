@@ -1,7 +1,0 @@
-<!--
-  Deprecated: this file attempted to inherit `web.assets_backend` and caused
-  an External ID error in some environments. The CSS asset is now registered
-  using the module `__manifest__['assets']` entry. Keep this file empty to
-  avoid double-registration or registry load errors.
--->
-
